@@ -1,4 +1,4 @@
-#Ammar's code
+#Ammar's code from RookieHacks
 var API_KEY = ""
 
 function display(data) {
