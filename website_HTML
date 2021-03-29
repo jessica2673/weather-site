@@ -1,0 +1,68 @@
+# weather-site
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>MetroWeather</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="ammar'scode.js" defer></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+
+  <section>
+    <h1><b>This is MetroWeather!</h1>
+    <h2>What we do: </h2>
+    <ul>
+      <li>Tell you the weather</li>
+      <li>Look awesome</li>
+      <li>remind you when it rains lol</li>
+    </ul>
+    <img src="https://cdn2.iconfinder.com/data/icons/weather-flat-14/64/weather02-512.png" alt="Your device does not support the image format"  width="64" height="64">
+  </section>
+
+  <section>
+    <h2>Here's how you get your weather: </h2>
+    <ol>
+      <li>Enter your location by latitude and longitude</li>
+      <li>Enter your location by city</li>
+      <li>Enter your location by current location</li>
+      <li>press "Ok"</li>
+      <li>That's it!</li>
+    </ol>
+  </section>
+
+  <body>
+
+    <section>
+      <p>The time of weather: </p>
+      <p id="weather"></p>
+    </section>
+
+    <script>
+      var d = new Date();
+      document.getElementById("weather").innerHTML = d;
+    </script>
+
+    <i class="fas fa-cloud"></i>
+    <i class="fas fa-cloud-rain"></i>
+    <i class="fas fa-cloud-sun"></i>
+    <i class="fas fa-cloud-sun-rain"></i>
+    <i class="fas fa-cloud-moon"></i><br>
+
+    <script src="index.js"></script>
+    <input type="text" placeholder="latitude" id="latitude">
+			<div id="output"></div>
+    <input type="text" placeholder="longitude" id="longitude">
+			<div id="output"></div>
+    <p>or<p>
+    <input type="text" placeholder="current location" id="current-location">
+			<div id="output"></div>
+    <p>or<p>
+    <input type="text" placeholder="city" id="city"><br>
+			<div id="output"></div><br>
+    <button onclick="myFunction()">OK</button>
+
+  </body>
+  
+</html>
