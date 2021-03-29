@@ -1,0 +1,21 @@
+# weather-site
+*{
+  font-family: DM Sans, Arial, Helvetica;
+}
+
+h1{
+  font-family: Manrope
+}
+body {
+  background-color: lightcyan;
+  display: grid;
+  grid-template-columns: auto minmax (0, 40rem) auto;
+	grid-template-rows: 5rem aut 5rem;
+}
+input {
+  padding: 5px;
+}
+
+button:hover, input[type="submit"]:hover {
+  color: palevioletred
+}
