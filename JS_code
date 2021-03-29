@@ -1,0 +1,71 @@
+var API_KEY = ""
+
+function display(data) {
+    var lat = data.city.coord.lat;
+    var long = data.city.coord.lon;
+    var cityname = data.city.name;
+    var country = data.city.country;
+    var temp = data.list[0].main.temp - 273.15;
+    var feels = data.list[0].main.feels_like - 273.15;
+    var humid = data.list[0].main.humidity;
+    var date = data.list[0].dt_txt.substr(0, 10);
+    var desc = data.list[0].weather[0].description;
+    var wind = data.list[0].wind.speed;
+
+    document.getElementById('output-title').innerHTML = `Weather for ${cityname}, ${country} (${lat}, ${long}), ${date}`;
+    document.getElementById('temp').innerHTML = `Average Temp: ${Math.round(temp * 100) / 100} C`;
+    document.getElementById('wind').innerHTML = `Wind Speed: ${wind} km/h`;
+    document.getElementById('humid').innerHTML = `Humidity: ${humid}%`;
+    document.getElementById('desc').innerHTML = `Condition: ${desc}`;
+    document.getElementById('feels').innerHTML = `Feels Like: ${Math.round(feels * 100) / 100} C`;
+
+    console.log(`${cityname}, ${country}, ${temp}, ${desc}, ${wind}, ${date}`);
+    document.getElementById('output').style.display = "block";
+}
+
+function coordsData(lat, long) {
+    var url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${API_KEY}`;
+    fetch(url).then(response => {
+            return response.json();
+        }).then(data => {
+            console.log(data);
+            display(data)
+        });
+}
+
+function cityData(city, country) {
+    var url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${API_KEY}`;
+    fetch(url)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            display(data)
+        });
+}
+
+function current() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            var long = position.coords.longitude;
+            var lat = position.coords.latitude;
+            console.log(`Current Location: ${lat}, ${long}`);
+            coordsData(lat, long);
+        });
+    }
+}
+
+function lat_long() {
+    var lat = document.getElementById('latitude').value;
+    var long = document.getElementById('longitude').value;
+    console.log(`User Input: ${lat}, ${long}`);
+    coordsData(lat, long)
+}
+
+function city() {
+    var cityname = document.getElementById('city').value;
+    var country = document.getElementById('country').value;
+    console.log(`User Input: ${cityname}, ${country}`);
+    cityData(cityname, country);
+}
